@@ -20,7 +20,7 @@ inheriting almost verbatim. Almost nothing above it is.
 
 | | |
 |---|---|
-| Stack | React 19.3, Vite 8.3, Tailwind 4.3, React Router 7 |
+| Stack | React 19.3.0, Vite 8.3.0, Tailwind 4.3.3, React Router 7.18.4 (per his lockfile) |
 | Language | JavaScript, no types |
 | Source | ~2,850 lines across 37 files |
 | Components | 17 |
@@ -232,7 +232,32 @@ things and need to stay that way.
   pointer or touch handling. The sparkline is inert on every phone and tablet.
   `doc/LINE_CHART.md` lists this as a "later" idea.
 
-### 3.9 Smaller items
+### 3.9 The fixture data contradicts itself, and the chart API lets it
+
+`DataTableWithChart.jsx:106` passes `tone={trendTone(row.changePercent)}`, which
+overrides the tone `resolveTone` would infer from the series. So a row carries
+**two independent claims about direction** — `changePercent` and the shape of
+`prices[]` — and nothing reconciles them.
+
+In `demoTable.json` they disagree. Measured across both drops of the fixture:
+
+| | first drop | second drop |
+|---|---|---|
+| Rows where `changePercent` sign contradicts the series trend | 9 / 32 | 2 / 32 |
+| Rows where `changePercent` is >0.5 pp off the implied first→last move | 24 / 32 | 11 / 32 |
+
+The second drop regenerated the series and cut the error roughly in half, but
+ROBI and ACIFORMULA still report `changePercent: 0` over a visibly rising line.
+They render a grey "unchanged" sparkline that climbs.
+
+The data is only the symptom. The defect is the API: a component should not
+accept two sources of truth for the same fact. Either the chart derives tone
+from the data it was given, or the row supplies one canonical delta and the
+chart is told nothing. Not both.
+
+(`ltp` does agree with `prices[prices.length - 1]` in every row, in both drops.)
+
+### 3.10 Smaller items
 
 | Where | Item |
 |---|---|
