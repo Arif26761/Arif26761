@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* English */
+@font-face {
+  font-family: "General Sans";
+  src: url("./assets/fonts/General_Sans_Font/GeneralSans-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url("./assets/fonts/General_Sans_Font/GeneralSans-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url("./assets/fonts/General_Sans_Font/GeneralSans-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url("./assets/fonts/General_Sans_Font/GeneralSans-Semibold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url("./assets/fonts/General_Sans_Font/GeneralSans-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Bangla */
+@font-face {
+  font-family: "Li Ador Noirrit";
+  src: url("./assets/fonts/LI_Ador_Noirrit_Font/Li Ador Noirrit Light.ttf")
+    format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Li Ador Noirrit";
+  src: url("./assets/fonts/LI_Ador_Noirrit_Font/Li Ador Noirrit Regular.ttf")
+    format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Li Ador Noirrit";
+  src: url("./assets/fonts/LI_Ador_Noirrit_Font/Li Ador Noirrit SemiBold.ttf")
+    format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Li Ador Noirrit";
+  src: url("./assets/fonts/LI_Ador_Noirrit_Font/Li Ador Noirrit Bold.ttf")
+    format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "General Sans", "Li Ador Noirrit", system-ui, sans-serif;
+
+  --color-page: var(--mood-page);
+  --color-surface: var(--mood-surface);
+  --color-surface-soft: var(--mood-surface-soft);
+  --color-ink: var(--mood-ink);
+  --color-ink-secondary: var(--mood-ink-secondary);
+  --color-muted: var(--mood-muted);
+  --color-muted-soft: var(--mood-muted-soft);
+  --color-border: var(--mood-border);
+  --color-brand: var(--mood-brand);
+  --color-brand-hover: var(--mood-brand-hover);
+  --color-brand-soft: var(--mood-brand-soft);
+  --color-on-brand: var(--mood-on-brand);
+  --color-success: var(--mood-success);
+  --color-error: var(--mood-error);
+  --color-warning: var(--mood-warning);
+  --color-info: var(--mood-info);
+
+  --text-xs: calc(0.75rem * var(--type-scale, 1));
+  --text-sm: calc(0.875rem * var(--type-scale, 1));
+  --text-base: calc(1rem * var(--type-scale, 1));
+  --text-lg: calc(1.125rem * var(--type-scale, 1));
+  --text-xl: calc(1.25rem * var(--type-scale, 1));
+  --text-2xl: calc(1.5rem * var(--type-scale, 1));
+  --text-3xl: calc(1.875rem * var(--type-scale, 1));
+  --text-4xl: calc(2.25rem * var(--type-scale, 1));
+  --text-5xl: calc(3rem * var(--type-scale, 1));
+  --text-6xl: calc(3.75rem * var(--type-scale, 1));
+}
+
+/* Palette: #0D1818 #163A38 #182A2A #B7FF64 #FFFFFF #FF2C2C #EAEBF4 #A3ABAB */
+
+/* Light mood */
+:root {
+  --type-scale: 1;
+  --mood-page: #eaebf4;
+  --mood-surface: #ffffff;
+  --mood-surface-soft: #eaebf4;
+  --mood-ink: #0d1818;
+  --mood-ink-secondary: #182a2a;
+  --mood-muted: #163a38;
+  --mood-muted-soft: #a3abab;
+  --mood-border: color-mix(in srgb, #a3abab 35%, #ffffff);
+  --mood-brand: #b7ff64;
+  --mood-brand-hover: color-mix(in srgb, #b7ff64 72%, #163a38);
+  --mood-brand-soft: #163a38;
+  --mood-on-brand: #0d1818;
+  --mood-success: #163a38;
+  --mood-error: #ff2c2c;
+  --mood-warning: color-mix(in srgb, #b7ff64 55%, #163a38);
+  --mood-info: #163a38;
+}
+
+/* Dark mood */
+.dark {
+  --mood-page: #0d1818;
+  --mood-surface: #182a2a;
+  --mood-surface-soft: #163a38;
+  --mood-ink: #ffffff;
+  --mood-ink-secondary: #eaebf4;
+  --mood-muted: #a3abab;
+  --mood-muted-soft: #a3abab;
+  --mood-border: color-mix(in srgb, #163a38 70%, #ffffff);
+  --mood-brand: #b7ff64;
+  --mood-brand-hover: color-mix(in srgb, #b7ff64 82%, #ffffff);
+  --mood-brand-soft: #b7ff64;
+  --mood-on-brand: #0d1818;
+  --mood-success: #b7ff64;
+  --mood-error: #ff2c2c;
+  --mood-warning: #b7ff64;
+  --mood-info: #eaebf4;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background-color: var(--color-page);
+  color: var(--color-ink);
+}
+
+html[lang="bn"] {
+  --font-sans: "Li Ador Noirrit", "General Sans", system-ui, sans-serif;
+}
